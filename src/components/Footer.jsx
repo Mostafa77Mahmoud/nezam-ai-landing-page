@@ -2,6 +2,9 @@ import React from 'react';
 import { Separator } from '@/components/ui/separator';
 import LanguageToggle from './LanguageToggle.jsx';
 import Bilingual from './Bilingual.jsx';
+import { ExternalLink } from 'lucide-react';
+
+const PRODUCT_URL = 'https://contracts.nezam-ai.com/';
 
 const Footer = () => {
   return (
@@ -37,6 +40,15 @@ const Footer = () => {
               <Bilingual ar="روابط مهمة" en="Important Links" />
             </h3>
             <div className="flex flex-col gap-2 text-sm">
+              <a
+                href={PRODUCT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-all duration-200 flex items-center gap-1.5 font-medium"
+              >
+                Nezam Contracts
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
               <a href="#privacy" className="hover:text-primary transition-all duration-200">
                 <Bilingual ar="سياسة الخصوصية" en="Privacy Policy" />
               </a>

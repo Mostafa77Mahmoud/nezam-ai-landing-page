@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
+import { Menu, ExternalLink } from 'lucide-react';
 import LanguageToggle from './LanguageToggle.jsx';
 import Bilingual from './Bilingual.jsx';
 import LanguageContext from '@/contexts/LanguageContext.jsx';
+
+const PRODUCT_URL = 'https://contracts.nezam-ai.com/';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +15,7 @@ const Header = () => {
   const navItems = [
     { ar: 'الرئيسية', en: 'Home', href: '#home' },
     { ar: 'المنتج', en: 'Product', href: '#product' },
+    { ar: 'كيف يعمل', en: 'How It Works', href: '#how-it-works' },
     { ar: 'تواصل', en: 'Contact', href: '#contact' },
   ];
 
@@ -50,6 +53,13 @@ const Header = () => {
 
           <div className="flex items-center gap-3">
             <LanguageToggle />
+
+            <a href={PRODUCT_URL} target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex">
+              <Button size="sm" className="gap-2 transition-all duration-200 active:scale-[0.98]">
+                <Bilingual ar="دخول المنتج" en="Launch App" />
+                <ExternalLink className="h-3.5 w-3.5" />
+              </Button>
+            </a>
             
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="md:hidden">
@@ -60,6 +70,18 @@ const Header = () => {
               <SheetContent side={language === 'ar' ? 'right' : 'left'}>
                 <nav className="flex flex-col gap-2 mt-8">
                   <NavLinks mobile />
+                  <a
+                    href={PRODUCT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsOpen(false)}
+                    className="mt-4"
+                  >
+                    <Button className="w-full gap-2">
+                      <Bilingual ar="دخول المنتج" en="Launch App" />
+                      <ExternalLink className="h-4 w-4" />
+                    </Button>
+                  </a>
                 </nav>
               </SheetContent>
             </Sheet>
